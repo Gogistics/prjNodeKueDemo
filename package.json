@@ -2,9 +2,9 @@
   "name": "node_kue",
   "version": "1.0.0",
   "description": "Node.js with Kue",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test/*.js"
   },
   "keywords": [
     "Node.js",
@@ -14,7 +14,8 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.14.0",
-    "kue": "^0.11.1"
+    "kue": "^0.11.1",
+    "redis": "^2.6.2"
   },
   "devDependencies": {
     "mocha": "^3.0.2",
