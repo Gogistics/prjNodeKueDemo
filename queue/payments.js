@@ -10,6 +10,7 @@ var redisConfig = {
 
 var queue = require('kue').createQueue(redisConfig);
 queue.watchStuckJobs(6000);
+
 queue.on('ready', function(){  
   // If you need to 
   console.info('Queue is ready!');
@@ -23,7 +24,7 @@ queue.on('error', function(err){
 });
 
 function createPayment(data, done) {  
-  queue.create('payment', data)
+  var job = queue.create('payment', data)
     .priority('critical')
     .attempts(8)
     .backoff(true)
@@ -31,20 +32,30 @@ function createPayment(data, done) {
     .save(function(err) {
       if (err) {
         console.error(err);
-        done(err, {order: data, success: false, error: true, message: 'failed to make an order'});
+        done(err, {order: data, success: false, error: true, message: 'failed to add the order into queue'});
       }
       if (!err) {
-        done(null, {order: data, success: true, error: null, message: 'order was made successfully'});
+        console.log('payment process successfully added into queue');
+        done(null, {order: data, success: true, error: null, message: 'order was added into queue  successfully'});
       }
     });
+
+  job.on('progress', function(progress, data){
+    console.log('Job #' + job.id + ' ' + progress + '% complete with data ', data );
+  });
+
+  job.on('complete', function(result){
+    console.log('Job completed with data ', result);
+  });
 }
 
 // Process up to 20 jobs concurrently
-queue.process('payment', 20, function(data, done){  
+queue.process('payment', 20, function(job, done){  
   // do something here
+  console.log('job is done...');
 
   // call done() when finished
-  done(null,{order: data, status: 'done'});
+  done();
 });
 
 module.exports = {  

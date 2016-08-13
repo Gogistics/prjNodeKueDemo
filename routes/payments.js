@@ -12,7 +12,6 @@ router.post('/', function(req, res, next){
       res.send(result);
     }
   });
-  // res.send({order: data});
 });
 
 module.exports = router;
