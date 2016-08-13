@@ -14,7 +14,6 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 var queue = require('kue').createQueue(redisConfig);
-
 queue.watchStuckJobs(6000);
 queue.on('ready', function(){  
   // If you need to 
@@ -37,20 +36,20 @@ function createPayment(data, done) {
     .save(function(err) {
       if (err) {
         console.error(err);
-        done(err);
+        done(err, {order: data, success: false, error: true, message: 'failed to make an order'});
       }
       if (!err) {
-        done();
+        done(null, {order: data, success: true, error: null, message: 'order was made successfully'});
       }
     });
 }
 
 // Process up to 20 jobs concurrently
-queue.process('payment', 20, function(job, done){  
+queue.process('payment', 20, function(data, done){  
   // do something here
 
   // call done() when finished
-  done();
+  done(null,{order: data, status: 'done'});
 });
 
 module.exports = {  

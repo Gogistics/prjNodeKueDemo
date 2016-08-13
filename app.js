@@ -1,5 +1,6 @@
 var express = require('express'),
-    app = express();
+    app = express(),
+    body_parser = require('body-parser');
 
 var payments = require('./routes/payments'),
     kue = require('kue');  
@@ -18,6 +19,8 @@ if (process.env.NODE_ENV === 'production') {
 }
 kue.createQueue(redisConfig);
 
+app.use(body_parser.json());
+app.use(body_parser.urlencoded({ extended: false }));
 app.use('/queue', kue.app); 
 app.use('/payments', payments);
 

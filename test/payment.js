@@ -19,15 +19,16 @@ const dummyOrder = {
     lastName: 'Person',
     email: 'example@example.com',
     address: '1234 somewhere lane, ? USA 12345'
-  }
+  },
+  message: 'I just made an order'
 };
 
-test('Receiving and processing payments', t => {  
+test('Receiving and processing payments', (t) => {  
   api
     .post('/payments')
     .send(dummyOrder)
     .end((err, res) => {
-      const order = res.body.order
+      var order = res.body.order;
 
       // Check for response body
       t.ok(res.body, 'Should respond with a body');

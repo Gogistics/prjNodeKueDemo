@@ -4,10 +4,15 @@ const router = require('express').Router();
 
 var my_kue_handler = require('../queue/payments');
 
-router.post('/', (req, res, next) => {  
-  my_kue_handler.create({},function(err, status){
-    if(!err) console.log(status);
+router.post('/', function(req, res, next){
+  var data = req.body;
+  // console.log(data);
+  my_kue_handler.create(data, function(err, result){
+    if(!err){
+      res.send(result);
+    }
   });
+  // res.send({order: data});
 });
 
 module.exports = router;
