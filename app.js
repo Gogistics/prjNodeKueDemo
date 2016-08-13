@@ -5,18 +5,13 @@ var express = require('express'),
 var payments = require('./routes/payments'),
     kue = require('kue');  
 
-var redisConfig;  
-if (process.env.NODE_ENV === 'production') {  
-  redisConfig = {
+var redisConfig = {
     redis: {
       port: process.env.REDIS_PORT,
       host: process.env.REDIS_HOST,
       auth: process.env.REDIS_PASS
     }
   };
-} else {
-  redisConfig = {};
-}
 kue.createQueue(redisConfig);
 
 app.use(body_parser.json());
