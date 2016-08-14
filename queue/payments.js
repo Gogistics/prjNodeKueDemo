@@ -2,8 +2,8 @@
 
 var redisConfig = {
     redis: {
-      port: process.env.REDIS_PORT,
-      host: process.env.REDIS_HOST,
+      port: (process.env.REDIS_POR || 6379),
+      host: (process.env.REDIS_HOST || '0.0.0.0'),
       auth: process.env.REDIS_PASS
     }
   };
