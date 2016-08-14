@@ -1,7 +1,9 @@
 #!/bin/bash
+my_ip=$(ip route get 8.8.8.8 | awk '/8.8.8.8/ {print $NF}')
 NODE_ENV=development
 REDIS_PORT=6379
-REDIS_HOST=0.0.0.0
+REDIS_HOST=${my_ip}
 REDIS_PASS=NA
 
+echo ${REDIS_HOST}
 node test/*.js
