@@ -8,7 +8,7 @@ var payments = require('./routes/payments'),
 var redisConfig = {
     redis: {
       port: (process.env.REDIS_PORT || 6379),
-      host: (process.env.REDIS_HOST || '0.0.0.0'),
+      host: (process.env.REDIS_HOST || '45.33.61.89'),
       auth: process.env.REDIS_PASS
     }
   };
