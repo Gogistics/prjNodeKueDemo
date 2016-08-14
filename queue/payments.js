@@ -58,6 +58,10 @@ queue.process('payment', 20, function(job, done){
   done();
 });
 
+function send_email(arg_email_info, done){
+  // send email via mailgun
+}
+
 module.exports = {  
   create: function(data, done) {
     createPayment(data, done);
