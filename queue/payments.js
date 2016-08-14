@@ -1,5 +1,6 @@
 'use strict';
 
+// default port and host are for test
 var redisConfig = {
     redis: {
       port: (process.env.REDIS_POR || 6379),

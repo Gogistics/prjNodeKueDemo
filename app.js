@@ -5,6 +5,7 @@ var express = require('express'),
 var payments = require('./routes/payments'),
     kue = require('kue');  
 
+// default port and host are for test
 var redisConfig = {
     redis: {
       port: (process.env.REDIS_PORT || 6379),
