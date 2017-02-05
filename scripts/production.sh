@@ -22,4 +22,5 @@ do
   fi
 done < ./my_vars
 
+cd ../
 NODE_ENV=staging REDIS_PORT=6378 REDIS_HOST=${REDIS_HOST} REDIS_PASS=${REDIS_PWD} forever start .

@@ -22,4 +22,5 @@ do
   fi
 done < ./my_vars
 
+cd ../
 NODE_ENV=development REDIS_PORT=6379 REDIS_HOST=${REDIS_HOST} REDIS_PASS=${REDIS_PWD} node .
