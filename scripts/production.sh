@@ -16,10 +16,10 @@ do
   if [ ${key} == 'REDIS_PWD' ]; then
     REDIS_PWD=${value}
   fi
-  if [ ${key} == 'REDIS_HOST' ]; then
+  if [ ${key} == 'REDIS_HOSTNAME' ]; then
     REDIS_HOST=${value}
   fi
 done < ./my_vars
 
 cd ../
-NODE_ENV=staging REDIS_PORT=6378 REDIS_HOST=${REDIS_HOST} REDIS_PASS=${REDIS_PWD} forever start .
+NODE_ENV=staging REDIS_PORT=6378 REDIS_HOST=${REDIS_HOST} REDIS_PASS=${REDIS_PWD} forever restart .
