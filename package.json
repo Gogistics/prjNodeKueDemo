@@ -4,7 +4,8 @@
   "description": "Node.js with Kue",
   "main": "app.js",
   "scripts": {
-    "test": "./script/test"
+    "start": "node app.js",
+    "test": "./scripts/test"
   },
   "keywords": [
     "Node.js",
