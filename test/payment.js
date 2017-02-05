@@ -4,25 +4,25 @@ var supertest = require('supertest'),
   app = require('../app'),
   api = supertest(app),
   test = require('tape'),
-  dummyOrder = {  
-  // This job property lets you make better use of the kue UI — keep reading for more
-  title: 'Order #4kSvjL_Qx',
-  paymentToken: '4kSvjL_Qx',
-  orderID: '1a2b3c4',
-  received: true,
-  receivedAt: new Date('December 24, 2015 23:59:59'),
-  createdAt: new Date('December 24, 2015 23:58:59'),
-  productID: '5d6e6f',
-  customer: {
-    firstName: 'A',
-    lastName: 'Person',
-    email: 'example@example.com',
-    address: '1234 somewhere lane, ? USA 12345'
-  },
-  message: 'I just made an order'
-};
+  dummyOrder = {
+    // This job property lets you make better use of the kue UI — keep reading for more
+    title: 'Order #4kSvjL_Qx',
+    paymentToken: '4kSvjL_Qx',
+    orderID: '1a2b3c4',
+    received: true,
+    receivedAt: new Date('December 24, 2015 23:59:59'),
+    createdAt: new Date('December 24, 2015 23:58:59'),
+    productID: '5d6e6f',
+    customer: {
+      firstName: 'A',
+      lastName: 'Person',
+      email: 'example@example.com',
+      address: '1234 somewhere lane, ? USA 12345'
+    },
+    message: 'I just made an order'
+  };
 
-test('Receiving and processing payments', (t) => {  
+test('Receiving and processing payments', function (t) {
   api
     .post('/payments')
     .send(dummyOrder)
