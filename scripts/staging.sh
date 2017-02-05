@@ -13,10 +13,10 @@ while IFS='=' read -r key value
 do
   keys+=("$key")
   values+=("$value")
-  if [ ${key} == REDIS_PWD ]; then
+  if [ ${key} == 'REDIS_PWD' ]; then
     REDIS_PWD=${value}
   fi
-  if [ ${key} == REDIS_HOST ]; then
+  if [ ${key} == 'REDIS_HOST' ]; then
     REDIS_HOST=${value}
   fi
 done < ./my_vars
