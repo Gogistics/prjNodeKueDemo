@@ -35,8 +35,7 @@ fi
 
 # staging and production; kue_redis_pwd
 # check if image exists
-echo "Current dir is: "$PWD
-app_image='strider_kue/redis_pwd:v1'
+app_image='redis_pwd:v1'
 inspect_result=$(docker inspect $app_image)
 if [ "[]" == "$inspect_result" ]; then
   echo "redis image with password does not exist"
