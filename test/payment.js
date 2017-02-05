@@ -1,11 +1,10 @@
 "use strict";
 
-const supertest = require('supertest'),
-      app = require('../app'),
-      api = supertest(app),
-      test = require('tape');
-
-const dummyOrder = {  
+var supertest = require('supertest'),
+  app = require('../app'),
+  api = supertest(app),
+  test = require('tape'),
+  dummyOrder = {  
   // This job property lets you make better use of the kue UI — keep reading for more
   title: 'Order #4kSvjL_Qx',
   paymentToken: '4kSvjL_Qx',

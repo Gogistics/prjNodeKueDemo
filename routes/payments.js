@@ -1,8 +1,7 @@
 'use strict';
 
-const router = require('express').Router();
-
-var my_kue_handler = require('../queue/payments');
+var router = require('express').Router(),
+  my_kue_handler = require('../queue/payments');
 
 router.post('/', function(req, res, next){
   var data = req.body;

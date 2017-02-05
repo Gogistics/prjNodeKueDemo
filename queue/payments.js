@@ -7,16 +7,14 @@ var redisConfig = {
       host: (process.env.REDIS_HOST || '127.0.0.1'),
       auth: process.env.REDIS_PASS
     }
-  };
+  },
+  queue = require('kue').createQueue(redisConfig);
 
-var queue = require('kue').createQueue(redisConfig);
 queue.watchStuckJobs(6000);
-
 queue.on('ready', function(){  
   // If you need to 
   console.info('Queue is ready!');
 });
-
 queue.on('error', function(err){  
   // handle connection errors here
   console.error('There was an error in the main queue!');
