@@ -4,7 +4,7 @@
 var redisConfig = {
     redis: {
       port: (process.env.REDIS_POR || 6379),
-      host: (process.env.REDIS_HOST || '45.33.61.89'),
+      host: (process.env.REDIS_HOST || '127.0.0.1'),
       auth: process.env.REDIS_PASS
     }
   };
