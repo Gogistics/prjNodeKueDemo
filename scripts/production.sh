@@ -11,6 +11,7 @@ REDIS_HOST=''
 cd ./my_redis/
 while IFS='=' read -r key value
 do
+  echo "$REDIS_PWD => $REDIS_HOST"
   keys+=("$key")
   values+=("$value")
   if [ ${key} == REDIS_PWD ]; then

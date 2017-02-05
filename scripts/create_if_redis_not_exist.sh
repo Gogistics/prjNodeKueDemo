@@ -21,6 +21,7 @@ do
     REDIS_HOST=${value}
   fi
 done < ./my_vars
+echo "$REDIS_PWD => $REDIS_HOST"
 
 # check if redis container exist
 # development; kue_redis
@@ -28,7 +29,7 @@ app_container='kue_redis'
 inspect_result=$(docker inspect $app_container)
 if [ "[]" == "$inspect_result" ]; then
   echo "redis container without password does not exist and a new one will be created..."
-  docker run --name ${app_container} -d -p ${REDIS_HOST}:6379:6379 redis redis-server --appendonly yes
+  docker run --name ${app_container} -d -p 127.0.0.1:6379:6379 redis redis-server --appendonly yes
 else
   echo "redis container without password setting already exists"
 fi
@@ -49,7 +50,7 @@ app_container='kue_redis_pwd'
 inspect_result=$(docker inspect $app_container)
 if [ "[]" == "$inspect_result" ]; then
   echo "redis container with password does not exist and a new one will be created..."
-  docker run --name ${app_container} -d -p ${REDIS_HOST}:6378:6379 -e REDIS_PASS=${REDIS_PWD} ${app_image}
+  docker run --name ${app_container} -d -p 127.0.0.1:6378:6379 -e REDIS_PASS=${REDIS_PWD} ${app_image}
 else
   echo "redis container with password already exists"
 fi
