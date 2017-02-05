@@ -26,7 +26,7 @@ test('Receiving and processing payments', function (t) {
   api
     .post('/payments')
     .send(dummyOrder)
-    .end((err, res) => {
+    .end(function (err, res) {
       var order = res.body.order;
 
       // Check for response body
