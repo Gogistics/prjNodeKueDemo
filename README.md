@@ -16,7 +16,7 @@ NOTE: For creating redis without pwd, use the command below
    
    ```docker run --name <YOUR_CONTAINER_NAME> -d redis redis-server -p <YOUR_PORT>:6379 --appendonly yes```
 
-Ref.
+Reference
 
 [Using Node, Redis, and Kue for Priority Job Processing](https://ifelse.io/2016/02/23/using-node-redis-and-kue-for-priority-job-processing/)
 
